@@ -9,8 +9,8 @@ using SalesWebMVC.Models;
 namespace SalesWebMVC.Migrations
 {
     [DbContext(typeof(SalesWebMVCContext))]
-    [Migration("20190104032653_OtherEntitiesReview")]
-    partial class OtherEntitiesReview
+    [Migration("20190104044235_Entities")]
+    partial class Entities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
