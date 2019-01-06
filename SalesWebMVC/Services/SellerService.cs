@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Models;
+using SalesWebMVC.Services.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,30 @@ namespace SalesWebMVC.Services
         {
             _context.Add(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller obj)
+        {
+            if (!_context.Seller.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch(DbUpdateConcurrencyException e)
+            {
+                throw new DBConcurrencyException(e.Message);
+
+                /*
+                 * Respeitando a arquitetura do sistema interceptamos uma essessão do nivel de acesso a dados
+                 * e relançando essa essessão em nivel de camada de serviço. Dessa forma o controlador somente
+                 * ira lidar com essessoes da camada de serviço
+                 */
+            }
+            
         }
     }
 }
