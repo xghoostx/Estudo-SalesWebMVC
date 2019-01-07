@@ -12,6 +12,7 @@ using SalesWebMVC.Models;
 using SalesWebMVC.Data;
 using SalesWebMVC.Services;
 using System.Collections.Generic;
+using SalesWebMvc.Services;
 
 namespace SalesWebMVC
 {
@@ -44,6 +45,7 @@ namespace SalesWebMVC
             // registra o serviço SeedingService no sistema de injeção de dependências 
             services.AddScoped<SeedingService>();
             services.AddScoped<SellerService>();
+            services.AddScoped<SalesRecordService>();
             services.AddScoped<DepartmentService>();
         }
 
